@@ -121,7 +121,6 @@ const filters = ref({
   'gender': { value: null, matchMode: FilterMatchMode.EQUALS },
   'ip_address': { value: null, matchMode: FilterMatchMode.CONTAINS }
 });
-//TODO:  OR dynamically assign columns based on data input??
 //helper and button functions
 function getColumnFields() {
   let colfields = [];
@@ -178,30 +177,8 @@ async function addItemBtn() {
   toggleAddDialog();
   await updateTableContent();
 }
-//Lifecycle hooks
 onMounted(() => {
   getAllItems().then(data => (items.value = data));
-  /*   //Lets try dynamically assigning how many columns I have based on what my data is
-    let maxlen = 0;
-    let maxitem;
-    for (let i = items.value.length; i > 0; i--) {
-      if (items.value[i].length > maxlen) {
-        maxlen = items.value[i].length
-        maxitem = items.value[i];
-      }
-  
-    }
-    //Now I have the length of the longest element in items array,
-    //and need to assign columns with a field and header generated from this longest item.
-    //example item: [name:"Bob",age:21,address:"Mars"]
-    for (let i = 0; i < maxlen; i++) {
-      //this is not correct, maxitem has no key attribute.
-      //TODO: Find the right way to do this. . .
-      columns.value.concat({ field: maxitem.key, header: maxitem.key })
-    }
-   */
-
-
 })
 
 </script>

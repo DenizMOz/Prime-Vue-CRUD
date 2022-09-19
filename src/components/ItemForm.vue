@@ -14,7 +14,6 @@
 
 <script setup>
 //imports
-//import { reactive } from "vue";
 import { defineProps, defineExpose, onMounted, ref } from 'vue';
 import { createItem, updateItem } from '../views/services/fetchservice.js';
 //vars
@@ -47,7 +46,6 @@ async function handleEditEvent() {
 }
 async function handleAddEvent() {
     //TODO: Vuelidate validation
-    //check v$ states here?
     await createItem(formItems.value);
     clearForm();
 }
@@ -56,37 +54,7 @@ defineExpose({
     handleAddEvent,
     handleEditEvent
 })
-//lifecycle hooks
 onMounted(() => {
     formItems.value = props.forminp;
 })
-
-
-
-// Use vuelidate later
-/* import { email, required, ipAddress } from "@vuelidate/validators";
-import { useVuelidate } from "@vuelidate/core"; */
-
-/* //vuelidate rules
-const rules = {
-    first_name: { required },
-    last_name: { required },
-    email: { required, email },
-    gender: {},
-    ip_address: { required, ipAddress }
-
-}
-const v$ = useVuelidate(forminp, rules); */
-//
-//Example vuelidate to use later:
-//
-// warning: Gave "too much recursion" error, check that out later
-/* 
-<div :class="{ error: v$.first_name.$errors.length }">
-        <InputText id="first-name" type="text" v-model="forminp.first_name" :placeholder="forminp.first_name" />
-        <div class="input-errors" v-for="error of v$.first_name.$errors" :key="error.$uid">
-            <div class="error-msg">{{ error.$message }}</div>
-        </div>
-    </div>
- */
 </script>
