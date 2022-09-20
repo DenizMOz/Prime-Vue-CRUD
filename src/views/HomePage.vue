@@ -30,7 +30,7 @@
     </ItemForm>
 
     <template #footer>
-      <Button label="Cancel" icon="pi pi-ban" @click="hideEditDialog()" class="p-button-text"
+      <Button label="Cancel" icon="pi pi-ban" @click="handleEditEvent()" class="p-button-text"
         style="margin-right:10px"></Button>
       <Button label="Edit" icon="pi pi-check" @click="editItemBtn()" autofocus></Button>
     </template>
@@ -168,14 +168,18 @@ async function nukeTheData() {
   toggleDelDialog();
 }
 async function editItemBtn() {
-  await editItemFormRef.value.handleEditEvent();
-  hideEditDialog();
-  await updateTableContent();
+  const allGood = await editItemFormRef.value.handleEditEvent();
+  if (allGood) {
+    hideEditDialog();
+    await updateTableContent();
+  }
 }
 async function addItemBtn() {
-  await addItemFormRef.value.handleAddEvent();
-  toggleAddDialog();
-  await updateTableContent();
+  const allGood = await addItemFormRef.value.handleAddEvent();
+  if (allGood) {
+    toggleAddDialog();
+    await updateTableContent();
+  }
 }
 onMounted(() => {
   getAllItems().then(data => (items.value = data));

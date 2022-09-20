@@ -1,10 +1,9 @@
 <template>
   <!---Dont need router for SPA but may be useful later-->
-  <router-view/>
+  <router-view />
 </template>
 
 <style>
-
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -12,6 +11,7 @@
   text-align: center;
   color: #2c3e50;
 }
+
 /* Boilerplate styling for unused nav tag component */
 nav {
   padding: 30px;
